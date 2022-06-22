@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+  <title>login</title>
+</head>
+<style>
+  body,
+  html {
+    background-color: black;
+  }
+
+  h1 {
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 30rem;
+    margin-right: 28rem;
+  }
+
+  /*------signupbutton-------*/
+  .glow-on-hover {
+    width: 9rem;
+    height: 3rem;
+    padding: 0.5rem 3rem 2rem 3rem;
+    text-decoration: none;
+    margin-left: 20rem;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+  }
+
+  .glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+  }
+
+  .glow-on-hover:active {
+    color: #000
+  }
+
+  .glow-on-hover:active:after {
+    background: transparent;
+  }
+
+  .glow-on-hover:hover:before {
+
+    opacity: 1;
+  }
+
+  .glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+  }
+
+  @keyframes glowing {
+    0% {
+      background-position: 0 0;
+    }
+
+    50% {
+      background-position: 400% 0;
+    }
+
+    100% {
+      background-position: 0 0;
+    }
+  }
+
+  .nav-link {
+    color: white;
+  }
+
+  .nav-link:hover {
+    color: wheat;
+  }
+
+  a:hover {
+    color: white;
+  }
+
+  .container {
+    display: flex;
+    max-width: 23rem;
+    margin-left: 32rem;
+    margin-top: 6rem;
+  }
+
+  .left {
+    width: 20rem;
+  }
+</style>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-fixed"
+    style=" padding-left: 5rem; padding-top: 3rem; padding-right: 5rem;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Chroma</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown" style="padding-left: 26rem; padding-right: 4rem; ">
+
+        <ul class="navbar-nav">
+
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+
+          <a class="nav-link active" href="/contactus">contact us </a>
+          <a class="glow-on-hover " href="register">SignUp</a>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <h1> Login To Your Account</h1>
+
+
+
+  <div class="container">
+    <div class="left">
+      <form action="login " method="POST">
+        {% csrf_token %}
+
+
+
+        <div class="form-floating">
+          <input type="text " class="form-control" id="floatingInput" name="uname" placeholder="Username"
+            style=" background-color: #101010;"><br>
+          <label for="floatingInput">Username</label>
+        </div>
+
+        <div class="form-floating ">
+          <input type="password" class="form-control" id="floatingInput" placeholder="Password " name="password"
+            style=" background-color: #101010;"><br>
+          <label for="floatingInput">Password</label>
+        </div>
+
+        <button type="submit" style="margin-left: 6rem;" class="glow-on-hover">login</button>
+
+      </form>
+    </div>
+  </div>
+
+
+
+  <div>
+    {% for message in messages %}
+    <h3>{{message}}</h3>
+    {% endfor %}
+  </div>
+
+</body>
+
+</html>

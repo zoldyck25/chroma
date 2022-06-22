@@ -1,0 +1,166 @@
+<doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+<title>comment </title>
+</head>
+<style>
+body,html{
+
+  padding:1rem 1rem 0rem 1rem;
+}
+.profile{
+  padding: 1rem 9rem 1rem 8rem;
+}
+.comment{
+  width: 80rem;
+}
+.commentimg{
+  width: 45rem;
+  height: 25rem;
+  margin-left: 5rem;
+}
+.postdetails{
+  padding: 0rem 5rem 0rem 9rem;
+}
+.cmtuser{
+  margin-left: -3rem;
+  margin-top:2rem;
+  height: 2rem;
+  width: 4rem;
+}
+.fmct{
+  margin-top: 21rem;
+    margin-left: -1rem;
+    margin-right: 3rem;
+}
+.container{
+  width: 35%;
+  height: 8%;
+  position: fixed;
+  margin-top: 15rem;;
+}
+.containerb{
+  width:100%;
+}
+.commentsection{
+  overflow-y:scroll;
+  height:20rem;
+}
+.row{
+  margin-left: 0rem;
+  width: 28rem;
+}
+.form{
+  height: 5rem;
+    background-color: darkgrey;
+    border-radius: 1rem;
+}
+.form-control{
+  display:inline-block;
+  width:70%;
+}
+form{
+  padding: 1.5rem 2rem 1rem 2rem;
+}
+.userimg{
+  width:3rem;
+}
+.col-md-11{
+  width:79%;
+}
+.ui{
+  width:13%;
+}
+</style>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-light navbar-light">
+      <div class="container-fluid">
+        <div class="logo" style="padding-left: 10%;">
+          Chroma
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class=" navbar-collapse flex-grow-0 " id="navbarNav" style="padding-right: 10%; ">
+          <ul class="navbar-nav" style="float:right;">
+            <li class="nav-item">
+              <a class="nav-link active" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/contactus">contactus</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<div class="profile d-flex">
+<h1> {{myposts.title}} </h1>
+</div> 
+
+<div class="comment d-flex  gap-2"> 
+  <div class="left">
+<img class="commentimg" src="/media/{{myposts.Images}}">
+  </div>
+  <div class="right containerb shadow border bg-white">
+<div class="commentsection">
+   
+  {% for comment in comments %}
+<div class="row my-3">
+        <div class="ui col-m-1">
+          <img class="userimg rounded  d-block" src="https://media.istockphoto.com/vectors/blank-face-avatar-of-a-man-vector-id1151399419?k=20&m=1151399419&s=612x612&w=0&h=8nJr772CZEUsqpjelOy4qE8syes1iJX7bS-RToIVdMM=" alt="user">
+        </div>
+
+         <div class="col-md-11">
+          <b>{{comment.user.username}}</b> at {{comment.timestamp}}
+          <div>{{comment.comment}}</div>
+        </div> 
+         
+</div>
+{% endfor %}
+  
+
+
+</div>
+<div class="form shadow border">
+  <form action="{% url 'comment' myposts.id %}" method="post">
+    {% csrf_token %}
+  <input type="text" class="form-control" name="comment" placeholder ="enter comment here ">
+  <input type="hidden" name="postSno"  value="{{post.sno}}">
+  <input  class="btn btn-outline-danger" type="submit" value ="submit">
+</form>
+</div>
+</div>
+</div>
+<hr>
+<div class="postdetails">
+<strong> {{myposts.liked.all.count}} Likes </strong>
+<strong class="bi bi-calendar-check" style="margin-left:2rem;"> Published on : {{myposts.pub_date}} </strong>
+<strong style="margin-left:30rem;">© 2021 Company, Inc</strong>
+</div>
+
+  
+
+ <!--java script-->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+ integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+ crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+ integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+ crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+ integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+ crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+</body>
+</html>
