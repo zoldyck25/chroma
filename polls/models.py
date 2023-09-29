@@ -12,8 +12,8 @@ class polls(models.Model):
     Images=models.ImageField(upload_to='clg/images/', default="")
     pub_date=models.DateField(null=True) 
     liked=models.ManyToManyField(User, default=None,blank=True,related_name='liked')   
-def __str__(self):
-    return str (self.title)
+    def __str__(self):
+        return str (self.title)
 
 @property
 def num_likes(self):

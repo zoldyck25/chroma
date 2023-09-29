@@ -11,6 +11,6 @@ urlpatterns = [
    path('create/',views.create,name='create'),
    path('like_post/<mypost_id>/',views.like_post,name='like_post'),
    path('comment/<mypost_id>/',views.comment,name='comment'),
-   
+
  
 ] 

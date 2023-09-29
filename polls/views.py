@@ -17,6 +17,7 @@ def create(request):
         form = CreatePollForm(request.POST, request.FILES )
         if form.is_valid():
             form.save()
+            print("save")
             print(form.cleaned_data['title'])
             return redirect('home')    
     form=CreatePollForm()
@@ -59,7 +60,7 @@ def comment(request,mypost_id):
         mypost = polls.objects.get(id=mypost_id)
         
 
-        words = {'bad','not good','stupid','crap'}
+        words = {'shit','fuck','garbage','bad','not good','stupid','crap'}
         if comment in words:
           print(" comment not posted ")
           return redirect('/')
@@ -76,5 +77,7 @@ def comment(request,mypost_id):
     'myposts':myposts
     }
     return render  (request,'comment.html',param)
+
+
 
 
